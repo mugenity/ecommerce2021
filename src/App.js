@@ -1,8 +1,13 @@
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router } from "react-router-dom";
+import "./index.scss";
 
 function App() {
   return (
     <div className="App">
-      <h1>New Project</h1>
+      <Router>
+        <Navbar />
+      </Router>
     </div>
   );
 }

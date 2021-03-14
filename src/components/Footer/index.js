@@ -4,10 +4,10 @@ import Terms from "./Terms";
 
 function Footer() {
   return (
-    <>
+    <footer>
       <Terms />
       <Copyright />
-    </>
+    </footer>
   );
 }
 

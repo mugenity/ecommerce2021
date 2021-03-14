@@ -23,9 +23,11 @@ function Navbar() {
   };
 
   return (
-    <div className="navigation">
+    <header className="navigation">
       <div className="logo">
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="centerNavItems">
         <ul className="navLinks">
@@ -48,11 +50,13 @@ function Navbar() {
           <li>
             Your Cart<span>(0)</span>
           </li>
-          <li>Register</li>
           <li>Login</li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
         </ul>
       </div>
-    </div>
+    </header>
   );
 }
 

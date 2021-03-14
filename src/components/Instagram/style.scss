@@ -1,0 +1,31 @@
+.instaContainer {
+  background-color: #f7f7f7;
+
+  .titles {
+    height: 150px;
+    text-align: center;
+    padding-top: 50px;
+
+    h1 {
+      text-transform: uppercase;
+    }
+
+    h5 {
+      color: #850303;
+    }
+  }
+
+  .instaImg {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    .individualBox {
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+}

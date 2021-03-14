@@ -7,16 +7,22 @@
   height: 100px;
   border: 1px solid rgb(185, 185, 185);
 
+  @media only screen and (max-width: 960px) {
+    & {
+      justify-content: flex-start;
+    }
+  }
+
   .logo {
-    width: 100%;
+    width: 100px;
 
     img {
-      width: 100px;
+      width: 100%;
     }
   }
 
   .centerNavItems {
-    width: 80%;
+    // width: 100%;
 
     .navLinks {
       display: flex;
@@ -38,7 +44,7 @@
   }
 
   .rightNavItems {
-    width: 60%;
+    // width: 60%;
 
     ul {
       display: flex;

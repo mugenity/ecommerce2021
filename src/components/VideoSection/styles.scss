@@ -1,0 +1,47 @@
+.videoContainer {
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .infoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+
+    .typoBox {
+      color: white;
+
+      h5 {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+      }
+
+      h1 {
+        text-transform: uppercase;
+        font-size: 3rem;
+      }
+    }
+
+    .videoBtnBox {
+      color: white;
+
+      i {
+        font-size: 4rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

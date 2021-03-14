@@ -1,0 +1,62 @@
+.gridContainer {
+  width: 90%;
+  margin: 100px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 220px 300px 150px;
+  gap: 10px;
+  grid-template-areas:
+    "header main sidebar "
+    "footer main sidebar "
+    "last last sidebar ";
+
+  .imageBox-a {
+    grid-area: header;
+
+    img {
+      width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageBox-b {
+    grid-area: main;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageBox-c {
+    grid-area: sidebar;
+
+    img {
+      width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageBox-d {
+    grid-area: footer;
+
+    img {
+      width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .imageBox-e {
+    grid-area: last;
+
+    img {
+      width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

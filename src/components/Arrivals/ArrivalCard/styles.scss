@@ -1,0 +1,39 @@
+.arrivalCardContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 90%;
+  margin: 0 auto;
+
+  .arrivalCardBox {
+    overflow: hidden;
+  }
+
+  .infoProduct {
+    h4 {
+      color: grey;
+      font-size: 0.8rem;
+      padding: 10px 0 10px 0;
+    }
+
+    h3 {
+      text-transform: uppercase;
+      padding: 10px 0 0 0;
+    }
+
+    h5 {
+      font-size: 1rem;
+      color: grey;
+    }
+
+    p {
+      padding: 10px 0;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    hr {
+      color: rgba(255, 254, 254, 0.658);
+    }
+  }
+}

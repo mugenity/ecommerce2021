@@ -1,0 +1,14 @@
+.copyrightBox {
+  height: 80px;
+  background-color: #1f1f1f;
+  padding-left: 70px;
+  padding-top: 20px;
+
+  span {
+    color: grey;
+
+    .pseudo {
+      color: brown;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+.termsContainer {
+  width: 100%;
+  height: 300px;
+  background-color: #1f1f1f;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 100px;
+  overflow: hidden;
+  border-bottom: 1px solid grey;
+
+  .categories,
+  .account,
+  .quickLinks,
+  .company {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      text-transform: uppercase;
+      color: white;
+    }
+
+    span {
+      color: grey;
+      margin-top: 20px;
+    }
+  }
+
+  .supportContainer {
+    .supportMessage {
+      margin-bottom: 20px;
+    }
+
+    .supportMessage,
+    .supportPhone {
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 2.5rem;
+        margin-right: 25px;
+        color: white;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+
+        span:nth-child(2) {
+          color: brown;
+        }
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+}

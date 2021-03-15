@@ -1,0 +1,66 @@
+.loginFormContainer {
+  background: white;
+  width: 80vw;
+  height: 600px;
+  border-radius: 50px;
+  display: flex;
+
+  .leftBox {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+
+  .rightBox {
+    width: 50%;
+    border-radius: 50px;
+    padding-left: 50px;
+    padding-top: 50px;
+
+    .titles {
+      margin-top: 30px;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h5 {
+        font-size: 0.6rem;
+      }
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+
+      input {
+        width: 80%;
+        padding: 10px 0;
+      }
+
+      input:nth-child(1) {
+        margin-bottom: 30px;
+      }
+
+      span {
+        margin: 10px 0;
+        font-size: 0.8rem;
+        text-align: right;
+        width: 80%;
+        margin-bottom: 30px;
+        font-style: italic;
+      }
+    }
+
+    .Button {
+      button {
+        width: 80%;
+        margin: 3px 0;
+      }
+    }
+  }
+}

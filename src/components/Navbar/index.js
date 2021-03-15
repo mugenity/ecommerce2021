@@ -50,7 +50,9 @@ function Navbar() {
           <li>
             Your Cart<span>(0)</span>
           </li>
-          <li>Login</li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
           <li>
             <Link to="/register">Register</Link>
           </li>

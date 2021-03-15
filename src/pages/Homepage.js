@@ -5,7 +5,6 @@ import Arrivals from "../components/Arrivals";
 import VideoSection from "../components/VideoSection";
 import Info from "../components/Info";
 import Instagram from "../components/Instagram";
-import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
 
 function Homepage() {

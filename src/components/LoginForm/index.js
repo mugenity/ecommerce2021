@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import InputField from "../InputField";
 import Button from "../Button";
 import welcomeImg from "../../assets/welcome.jpg";
 import { signInWithGoogle } from "./../../firebase/utils";
+
 import "./styles.scss";
 
 class LoginForm extends Component {
@@ -14,7 +16,7 @@ class LoginForm extends Component {
       <div className="loginFormContainer">
         <div
           className="leftBox"
-          style={{ background: `url(${welcomeImg})` }}
+          style={{ backgroundImage: `url(${welcomeImg})` }}
         ></div>
         <div className="rightBox">
           <div className="titles">
@@ -23,8 +25,8 @@ class LoginForm extends Component {
           </div>
           <form onSubmit={this.handleSubmit}>
             <div className="inputs">
-              <input type="email" name="email" placeholder="Email" />
-              <input type="password" name="password" placeholder="Password" />
+              <InputField type="email" placeHolder="Email" required />
+              <InputField type="password" placeHolder="Password" required />
               <span>Forgot Password ?</span>
             </div>
             <Button title="Login" />

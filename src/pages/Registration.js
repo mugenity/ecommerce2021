@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import RegisterForm from "../components/RegisterForm";
 
 class Registration extends Component {
   render() {
     return (
-      <div id="page-wrap">
-        <div id="outer-container">
-          <h1>Registration</h1>
-        </div>
+      <div>
+        <RegisterForm />
       </div>
     );
   }

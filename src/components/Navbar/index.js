@@ -1,65 +1,92 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Dropdown from "../Dropdown";
+import { auth } from "./../../firebase/utils";
 import logo from "../../assets/logo.png";
+
 import "./styles.scss";
 
-function Navbar() {
-  const [dropdown, setDropdown] = useState(false);
+function Navbar(props) {
+  const [openMenu, setOpenMenu] = useState(false);
+  const { currentUser } = props;
 
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(true);
-    }
-  };
-  const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(false);
-    }
-  };
+  const showOverlay = openMenu && (
+    <div className="overlayMenu">
+      <span className="closeBtn" onClick={() => setOpenMenu(false)}>
+        X
+      </span>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/">Shop</Link>
+        </li>
+        <li>
+          <Link to="/">Product</Link>
+        </li>
+      </ul>
+    </div>
+  );
 
   return (
-    <header className="navigation">
-      <div className="logo">
-        <Link to="/">
-          <img src={logo} alt="logo" />
-        </Link>
-      </div>
-      <div className="centerNavItems">
-        <ul className="navLinks">
+    <header className="navigationBox">
+      {showOverlay}
+      <div className="navbarNavigation">
+        <div className="burgerMenu" onClick={() => setOpenMenu(true)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul className="menuDesktop">
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <Link to="/">
-              Shop <i className="fas fa-caret-down" />
-            </Link>
-            {dropdown && <Dropdown />}
+          <li>
+            <Link to="/">Shop</Link>
           </li>
           <li>
-            <Link to="/">Products</Link>
+            <Link to="/">Product</Link>
           </li>
         </ul>
-      </div>
-      <div className="rightNavItems">
-        <ul>
+        <div className="logo">
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
+        </div>
+        <ul className="rightItems">
           <li>
-            Your Cart<span>(0)</span>
+            <Link to="/">
+              Cart <span>(0)</span>
+            </Link>
           </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
+          {!currentUser && (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </>
+          )}
+          {currentUser && (
+            <>
+              <li>
+                <Link to="/">Account</Link>
+              </li>
+              <li>
+                <Link onClick={() => auth.signOut()}>Logout</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </header>
   );
 }
+
+Navbar.defaultProps = {
+  currentUser: null,
+};
 
 export default Navbar;

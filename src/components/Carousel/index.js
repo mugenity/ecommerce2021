@@ -19,7 +19,7 @@ function Carousel() {
             currImg > 0 && setCurrImg(currImg - 1);
           }}
         >
-          <ArrowBackIosIcon />
+          <ArrowBackIosIcon className="arrowLeft" />
         </div>
         <div className="center">
           {/* <h1>{carouselData[currImg].title}</h1>
@@ -31,7 +31,7 @@ function Carousel() {
             currImg < carouselData.length - 1 && setCurrImg(currImg + 1);
           }}
         >
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon className="arrowRight" />
         </div>
       </div>
     </div>

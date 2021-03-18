@@ -28,7 +28,7 @@ function Info() {
       <div className="info">
         <i className="fas fa-cart-arrow-down" />
         <div className="infoDetail">
-          <span>Member Discount</span>
+          <span>Member Bonus </span>
           <span>Free deals every week</span>
         </div>
       </div>

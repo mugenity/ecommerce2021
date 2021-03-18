@@ -2,13 +2,27 @@
   width: 90%;
   margin: 100px auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 220px 300px 150px;
   gap: 10px;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 250px);
   grid-template-areas:
-    "header main sidebar "
-    "footer main sidebar "
-    "last last sidebar ";
+    "header"
+    "footer"
+    "sidebar"
+    "main"
+    "last";
+
+  @media only screen and (min-width: 760px) {
+    & {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 220px 300px 150px;
+      grid-template-areas:
+        "header main sidebar "
+        "footer main sidebar "
+        "last last sidebar ";
+    }
+  }
 
   .imageBox-a {
     grid-area: header;

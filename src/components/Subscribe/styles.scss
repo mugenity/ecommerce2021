@@ -1,15 +1,20 @@
 .subscribeContainer {
-  height: 200px;
+  height: 100%;
   background-color: #1f1f1f;
   border-bottom: 1px solid grey;
   display: grid;
+  place-items: center;
   grid-template-columns: 1fr 1fr;
-  padding-top: 50px;
+  padding: 25px 0;
 
   .location {
-    width: 200px;
-    height: 200px;
-    margin-left: 50px;
+    display: none;
+    width: 150px;
+    height: 150px;
+
+    @media only screen and (min-width: 760px) {
+      display: block;
+    }
 
     img {
       width: 100%;
@@ -20,7 +25,8 @@
   }
 
   .subscribeForm {
-    margin-right: 50px;
+    width: 90%;
+    height: 100%;
 
     form {
       display: flex;
@@ -41,8 +47,12 @@
           color: white;
           border: none;
           border-bottom: 1px solid grey;
-          width: 500px;
+          width: 200px;
           outline: none;
+
+          @media only screen and (min-width: 760px) {
+            width: 400px;
+          }
 
           &:focus {
             border-bottom: 1px solid brown;

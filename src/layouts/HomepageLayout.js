@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 function MainLayout(props) {
   return (
     <div>
-      <Navbar />
+      <Navbar {...props} />
       {props.children}
     </div>
   );

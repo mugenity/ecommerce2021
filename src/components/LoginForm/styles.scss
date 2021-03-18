@@ -12,13 +12,22 @@
     width: 50%;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+    display: none;
+
+    @media only screen and (min-width: 760px) {
+      display: block;
+    }
   }
 
   .rightBox {
-    width: 50%;
+    width: 100%;
     border-radius: 50px;
     padding-left: 50px;
     padding-top: 50px;
+
+    @media only screen and (min-width: 760px) {
+      width: 50%;
+    }
 
     .titles {
       margin-top: 30px;

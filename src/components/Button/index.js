@@ -2,10 +2,10 @@ import React from "react";
 
 import "./styles.scss";
 
-function Button({ title }) {
+function Button({ title, ...otherProps }) {
   return (
     <div className="Button">
-      <button> {title} </button>
+      <button {...otherProps}> {title} </button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
-function MainLayout(props) {
+function HomepageLayout(props) {
   return (
     <div>
       <Navbar {...props} />
@@ -10,4 +10,4 @@ function MainLayout(props) {
   );
 }
 
-export default MainLayout;
+export default HomepageLayout;

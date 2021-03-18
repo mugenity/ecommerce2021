@@ -3,8 +3,10 @@ import React, { Component } from "react";
 class Registration extends Component {
   render() {
     return (
-      <div>
-        <h1>Registration</h1>
+      <div id="page-wrap">
+        <div id="outer-container">
+          <h1>Registration</h1>
+        </div>
       </div>
     );
   }

@@ -49,6 +49,14 @@
       margin-left: 10px;
       cursor: pointer;
 
+      &:hover {
+        span:nth-child(1) {
+          width: 30px;
+          transition: 0.3s ease-in-out all;
+          background-color: brown;
+        }
+      }
+
       @media screen and (min-width: 760px) {
         display: none;
       }
@@ -58,6 +66,7 @@
         height: 4px;
         background-color: black;
         margin: 4px 0;
+        transition: 0.3s ease-in-out all;
       }
     }
     .rightItems {
@@ -91,7 +100,7 @@
       position: absolute;
       top: 20px;
       left: 90%;
-      font-size: 3rem;
+      font-size: 2rem;
       cursor: pointer;
     }
 

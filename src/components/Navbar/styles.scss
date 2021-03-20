@@ -102,6 +102,12 @@
       left: 90%;
       font-size: 2rem;
       cursor: pointer;
+      transition: 0.5s ease-in-out all;
+
+      &:hover {
+        color: brown;
+        transition: 0.5s ease-in-out all;
+      }
     }
 
     ul {
@@ -119,6 +125,12 @@
         a {
           color: white;
           text-transform: uppercase;
+          transition: 1s ease-in-out all;
+
+          &:hover {
+            color: brown;
+            transition: 0.5s ease-in-out all;
+          }
         }
       }
     }

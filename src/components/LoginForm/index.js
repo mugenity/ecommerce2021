@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import InputField from "../InputField";
 import Button from "../Button";
 import welcomeImg from "../../assets/welcome.jpg";
@@ -77,7 +78,7 @@ class LoginForm extends Component {
                 placeHolder="Password"
                 required
               />
-              <span>Forgot Password ?</span>
+              <Link to="/recovery">Forgot Password ?</Link>
             </div>
             <Button title="Login" />
             <Button

@@ -73,7 +73,7 @@ function Navbar(props) {
           {currentUser && (
             <>
               <li>
-                <Link to="/">Account</Link>
+                <Link to="/dashboard">Account</Link>
               </li>
               <li>
                 <Link onClick={() => auth.signOut()}>Logout</Link>

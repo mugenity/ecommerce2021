@@ -1,46 +1,62 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import Button from "./../Button";
 import RegisterImg from "./../../assets/hero_men2.jpg";
 import "./styles.scss";
 import { auth, handleUserProfile } from "./../../firebase/utils";
 import InputField from "../InputField";
 
-const initialState = {
-  displayName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  errors: [],
-};
+// const initialState = {
+//   displayName: "",
+//   email: "",
+//   password: "",
+//   confirmPassword: "",
+//   errors: [],
+// };
 
-class RegisterForm extends Component {
-  constructor(props) {
-    super(props);
+const RegisterForm = (props) => {
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
-    this.state = {
-      ...initialState,
-    };
+  // constructor(props) {
+  //   super(props);
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  //   this.state = {
+  //     ...initialState,
+  //   };
 
-  handleChange(e) {
-    const { name, value } = e.target;
+  //   this.handleChange = this.handleChange.bind(this);
+  // }
 
-    this.setState({
-      [name]: value,
-    });
-  }
+  // handleChange(e) {
+  //   const { name, value } = e.target;
 
-  handleFormSubmit = async (event) => {
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // }
+
+  const resetFields = () => {
+    setDisplayName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setErrors([]);
+  };
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = this.state;
+    // const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       const err = ["Password Don't match"];
-      this.setState({
-        errors: err,
-      });
+      // this.setState({
+      //   errors: err,
+      // });
+      setErrors(err);
       return;
     }
 
@@ -51,83 +67,75 @@ class RegisterForm extends Component {
       );
       await handleUserProfile(user, { displayName });
 
-      this.setState({
-        ...initialState,
-      });
+      // this.setState({
+      //   ...initialState,
+      // });
+      resetFields();
+      props.history.push("/");
     } catch (err) {
       // console.log(err);
     }
   };
 
-  render() {
-    const {
-      displayName,
-      email,
-      password,
-      confirmPassword,
-      errors,
-    } = this.state;
-
-    return (
-      <div className="formContainer">
-        <div
-          className="leftBox"
-          style={{ backgroundImage: `url(${RegisterImg}) ` }}
-        ></div>
-        <div className="rightBox">
-          <h3>Sign In</h3>
-          {errors.length > 0 && (
-            <ul>
-              {errors.map((err, index) => {
-                return <li key={index}>{err}</li>;
-              })}
-            </ul>
-          )}
-          <div className="formWrapper">
-            <form onSubmit={this.handleFormSubmit} className="formBox">
-              <InputField
-                label="Full Name"
-                type="text"
-                placeholder="Name"
-                name="displayName"
-                value={displayName}
-                onChange={this.handleChange}
-                required
-              />
-              <InputField
-                label="Email"
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-                required
-              />
-              <InputField
-                label="Password"
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={this.handleChange}
-                required
-              />
-              <InputField
-                label="Confirm Password"
-                type="password"
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={this.handleChange}
-                required
-              />
-              <Button type="submit" title="Register" />
-            </form>
-          </div>
+  return (
+    <div className="formContainer">
+      <div
+        className="leftBox"
+        style={{ backgroundImage: `url(${RegisterImg}) ` }}
+      ></div>
+      <div className="rightBox">
+        <h3>Sign In</h3>
+        {errors.length > 0 && (
+          <ul>
+            {errors.map((err, index) => {
+              return <li key={index}>{err}</li>;
+            })}
+          </ul>
+        )}
+        <div className="formWrapper">
+          <form onSubmit={handleFormSubmit} className="formBox">
+            <InputField
+              label="Full Name"
+              type="text"
+              placeholder="Name"
+              name="displayName"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              required
+            />
+            <InputField
+              label="Email"
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <InputField
+              label="Password"
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <InputField
+              label="Confirm Password"
+              type="password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <Button type="submit" title="Register" />
+          </form>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default RegisterForm;
+export default withRouter(RegisterForm);

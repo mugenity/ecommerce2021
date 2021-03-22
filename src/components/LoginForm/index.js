@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import InputField from "../InputField";
 import Button from "../Button";
 import welcomeImg from "../../assets/welcome.jpg";
@@ -7,90 +7,96 @@ import { signInWithGoogle, auth } from "./../../firebase/utils";
 
 import "./styles.scss";
 
-const initialState = {
-  email: "",
-  password: "",
-};
+// const initialState = {
+//   email: "",
+//   password: "",
+// };
 
-class LoginForm extends Component {
-  constructor(props) {
-    super(props);
+const LoginForm = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    this.state = {
-      ...initialState,
-    };
+  // constructor(props) {
+  //   super(props);
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+  //   this.state = {
+  //     ...initialState,
+  //   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
+  //   this.handleChange = this.handleChange.bind(this);
+  // }
 
-    this.setState({
-      [name]: value,
-    });
+  // handleChange = (e) => {
+  //   const { name, value } = e.target;
+
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  //   setEmail
+  // };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
   };
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    // const { email, password } = this.state;
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
 
-      this.setState({
-        ...initialState,
-      });
+      resetForm();
+      props.history.push("/");
     } catch (err) {
       // console.log(err);
     }
   };
 
-  render() {
-    const { email, password } = this.state;
+  // const { email, password } = this.state;
 
-    return (
-      <div className="loginFormContainer">
-        <div
-          className="leftBox"
-          style={{ backgroundImage: `url(${welcomeImg})` }}
-        ></div>
-        <div className="rightBox">
-          <div className="titles">
-            <h2>Login</h2>
-            <h5>Please login to continue</h5>
-          </div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="inputs">
-              <InputField
-                onChange={this.handleChange}
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Email"
-                required
-              />
-              <InputField
-                onChange={this.handleChange}
-                type="password"
-                name="password"
-                value={password}
-                placeholder="Password"
-                required
-              />
-              <Link to="/recovery">Forgot Password ?</Link>
-            </div>
-            <Button title="Login" />
-            <Button
-              type="submit"
-              onClick={signInWithGoogle}
-              title="Login with Google"
-            />
-          </form>
+  return (
+    <div className="loginFormContainer">
+      <div
+        className="leftBox"
+        style={{ backgroundImage: `url(${welcomeImg})` }}
+      ></div>
+      <div className="rightBox">
+        <div className="titles">
+          <h2>Login</h2>
+          <h5>Please login to continue</h5>
         </div>
+        <form onSubmit={handleSubmit}>
+          <div className="inputs">
+            <InputField
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              required
+            />
+            <InputField
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              required
+            />
+            <Link to="/recovery">Forgot Password ?</Link>
+          </div>
+          <Button title="Login" />
+          <Button
+            type="submit"
+            onClick={signInWithGoogle}
+            title="Login with Google"
+          />
+        </form>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default LoginForm;
+export default withRouter(LoginForm);

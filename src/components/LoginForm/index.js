@@ -75,7 +75,7 @@ class LoginForm extends Component {
                 type="password"
                 name="password"
                 value={password}
-                placeHolder="Password"
+                placeholder="Password"
                 required
               />
               <Link to="/recovery">Forgot Password ?</Link>

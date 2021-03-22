@@ -88,7 +88,7 @@ class RegisterForm extends Component {
               <InputField
                 label="Full Name"
                 type="text"
-                placeHolder="Name"
+                placeholder="Name"
                 name="displayName"
                 value={displayName}
                 onChange={this.handleChange}
@@ -97,7 +97,7 @@ class RegisterForm extends Component {
               <InputField
                 label="Email"
                 type="email"
-                placeHolder="Email"
+                placeholder="Email"
                 name="email"
                 value={email}
                 onChange={this.handleChange}
@@ -106,7 +106,7 @@ class RegisterForm extends Component {
               <InputField
                 label="Password"
                 type="password"
-                placeHolder="Password"
+                placeholder="Password"
                 name="password"
                 value={password}
                 onChange={this.handleChange}
@@ -115,7 +115,7 @@ class RegisterForm extends Component {
               <InputField
                 label="Confirm Password"
                 type="password"
-                placeHolder="Confirm Password"
+                placeholder="Confirm Password"
                 name="confirmPassword"
                 value={confirmPassword}
                 onChange={this.handleChange}

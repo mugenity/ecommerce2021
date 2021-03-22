@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "./../../firebase/utils";
 import logo from "../../assets/logo.png";
@@ -89,4 +90,8 @@ Navbar.defaultProps = {
   currentUser: null,
 };
 
-export default Navbar;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+export default connect(mapStateToProps, null)(Navbar);

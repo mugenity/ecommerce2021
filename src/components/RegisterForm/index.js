@@ -1,43 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser, resetAllAuthForms } from "./../../redux/User/user.actions";
+
 import { withRouter } from "react-router-dom";
 import Button from "./../Button";
 import RegisterImg from "./../../assets/hero_men2.jpg";
-import "./styles.scss";
-import { auth, handleUserProfile } from "./../../firebase/utils";
 import InputField from "../InputField";
+import "./styles.scss";
 
-// const initialState = {
-//   displayName: "",
-//   email: "",
-//   password: "",
-//   confirmPassword: "",
-//   errors: [],
-// };
+const mapState = ({ user }) => ({
+  signUpSuccess: user.signUpSuccess,
+  signUpError: user.signUpError,
+});
 
 const RegisterForm = (props) => {
+  const dispatch = useDispatch();
+  const { signUpSuccess, signUpError } = useSelector(mapState);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // constructor(props) {
-  //   super(props);
+  useEffect(() => {
+    if (signUpSuccess) {
+      resetFields();
+      dispatch(resetAllAuthForms());
+      props.history.push("/");
+    }
+  }, [signUpSuccess]);
 
-  //   this.state = {
-  //     ...initialState,
-  //   };
-
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
-
-  // handleChange(e) {
-  //   const { name, value } = e.target;
-
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
+  useEffect(() => {
+    if (Array.isArray(signUpError) && signUpError.length > 0) {
+      setErrors(signUpError);
+    }
+  }, [signUpError]);
 
   const resetFields = () => {
     setDisplayName("");
@@ -47,34 +44,10 @@ const RegisterForm = (props) => {
     setErrors([]);
   };
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    // const { displayName, email, password, confirmPassword } = this.state;
 
-    if (password !== confirmPassword) {
-      const err = ["Password Don't match"];
-      // this.setState({
-      //   errors: err,
-      // });
-      setErrors(err);
-      return;
-    }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await handleUserProfile(user, { displayName });
-
-      // this.setState({
-      //   ...initialState,
-      // });
-      resetFields();
-      props.history.push("/");
-    } catch (err) {
-      // console.log(err);
-    }
+    dispatch(signUpUser({ displayName, email, password, confirmPassword }));
   };
 
   return (

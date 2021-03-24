@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 import { auth, handleUserProfile } from "./firebase/utils";
 import { setCurrentUser } from "./redux/User/user.actions";
 
@@ -19,52 +19,29 @@ import "./index.scss";
 import Recovery from "./pages/Recovery";
 
 const App = (props) => {
-  // authListener = null;
-  const { setCurrentUser, currentUser } = props;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const authListener = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
         userRef.onSnapshot((snapshot) => {
-          //same as this.props.setCurrentUser
-          setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data(),
-          });
+          dispatch(
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data(),
+            })
+          );
         });
       }
 
-      setCurrentUser(userAuth); //if the user is not logged in it will return null
+      dispatch(setCurrentUser(userAuth)); //if the user is not logged in it will return null
     });
 
     return () => {
-      setCurrentUser(authListener);
+      authListener();
     };
   }, []);
-
-  // componentDidMount() {
-  //   const { setCurrentUser } = this.props;
-
-  //   this.authListener = auth.onAuthStateChanged(async (userAuth) => {
-  //     if (userAuth) {
-  //       const userRef = await handleUserProfile(userAuth);
-  //       userRef.onSnapshot((snapshot) => {
-  //         //same as this.props.setCurrentUser
-  //         setCurrentUser({
-  //           id: snapshot.id,
-  //           ...snapshot.data(),
-  //         });
-  //       });
-  //     }
-
-  //     setCurrentUser(userAuth); //if the user is not logged in it will return null
-  //   });
-  // }
-
-  // componentWillUnmount() {
-  //   this.authListener();
-  // }
 
   return (
     <div className="App">
@@ -117,12 +94,4 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

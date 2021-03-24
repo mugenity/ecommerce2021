@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { auth } from "./../../firebase/utils";
 import logo from "../../assets/logo.png";
 
 import "./styles.scss";
 
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 function Navbar(props) {
   const [openMenu, setOpenMenu] = useState(false);
-  const { currentUser } = props;
+  const { currentUser } = useSelector(mapState);
 
   const showOverlay = openMenu && (
     <div className="overlayMenu">
@@ -90,8 +94,4 @@ Navbar.defaultProps = {
   currentUser: null,
 };
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
-
-export default connect(mapStateToProps, null)(Navbar);
+export default Navbar;

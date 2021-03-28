@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { auth } from "./../../firebase/utils";
+import { signOutUserStart } from "./../../redux/User/user.actions";
 import logo from "../../assets/logo.png";
 
 import "./styles.scss";
@@ -11,8 +11,13 @@ const mapState = ({ user }) => ({
 });
 
 function Navbar(props) {
-  const [openMenu, setOpenMenu] = useState(false);
+  const dispatch = useDispatch();
   const { currentUser } = useSelector(mapState);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
 
   const showOverlay = openMenu && (
     <div className="overlayMenu">
@@ -80,7 +85,7 @@ function Navbar(props) {
                 <Link to="/dashboard">Account</Link>
               </li>
               <li>
-                <Link onClick={() => auth.signOut()}>Logout</Link>
+                <Link onClick={() => signOut()}>Logout</Link>
               </li>
             </>
           )}

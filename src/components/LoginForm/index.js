@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
-  signInUser,
-  signInWithGoogle,
-  resetAllAuthForms,
+  emailSignInStart,
+  signInWithGoogleStart,
 } from "./../../redux/User/user.actions";
 
 import InputField from "../InputField";
@@ -15,22 +14,22 @@ import "./styles.scss";
 
 //1. Distruct user object from the rooter reducer then return an object of signSuccess that you will find (rootReducer user).(signInSuccess) from the state
 const mapState = ({ user }) => ({
-  signInSuccess: user.signInSuccess,
+  currentUser: user.currentUser,
 });
 
 const LoginForm = (props) => {
   const dispatch = useDispatch();
-  const { signInSuccess } = useSelector(mapState);
+  const history = useHistory();
+  const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (signInSuccess) {
+    if (currentUser) {
       resetForm();
-      dispatch(resetAllAuthForms());
-      props.history.push("/");
+      history.push("/");
     }
-  }, [signInSuccess]);
+  }, [currentUser]);
 
   const resetForm = () => {
     setEmail("");
@@ -39,11 +38,11 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signInUser({ email, password }));
+    dispatch(emailSignInStart({ email, password }));
   };
 
   const handleGoogleSignIn = () => {
-    dispatch(signInWithGoogle());
+    dispatch(signInWithGoogleStart());
   };
 
   return (
@@ -89,4 +88,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default withRouter(LoginForm);
+export default LoginForm;

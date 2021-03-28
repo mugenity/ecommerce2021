@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpUser, resetAllAuthForms } from "./../../redux/User/user.actions";
+import { signUpUserStart } from "./../../redux/User/user.actions";
 
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "./../Button";
 import RegisterImg from "./../../assets/hero_men2.jpg";
 import InputField from "../InputField";
 import "./styles.scss";
 
 const mapState = ({ user }) => ({
-  signUpSuccess: user.signUpSuccess,
-  signUpError: user.signUpError,
+  currentUser: user.currentUser,
+  userErr: user.userErr,
 });
 
 const RegisterForm = (props) => {
   const dispatch = useDispatch();
-  const { signUpSuccess, signUpError } = useSelector(mapState);
+  const history = useHistory();
+  const { currentUser, userErr } = useSelector(mapState);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,18 +24,17 @@ const RegisterForm = (props) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (signUpSuccess) {
+    if (currentUser) {
       resetFields();
-      dispatch(resetAllAuthForms());
-      props.history.push("/");
+      history.push("/");
     }
-  }, [signUpSuccess]);
+  }, [currentUser]);
 
   useEffect(() => {
-    if (Array.isArray(signUpError) && signUpError.length > 0) {
-      setErrors(signUpError);
+    if (Array.isArray(userErr) && userErr.length > 0) {
+      setErrors(userErr);
     }
-  }, [signUpError]);
+  }, [userErr]);
 
   const resetFields = () => {
     setDisplayName("");
@@ -47,7 +47,9 @@ const RegisterForm = (props) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(signUpUser({ displayName, email, password, confirmPassword }));
+    dispatch(
+      signUpUserStart({ displayName, email, password, confirmPassword })
+    );
   };
 
   return (
@@ -111,4 +113,4 @@ const RegisterForm = (props) => {
   );
 };
 
-export default withRouter(RegisterForm);
+export default RegisterForm;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import backImg from "../../assets/videoBack.jpg";
-import Modal from "../Modal";
+import VideoModal from "../VideoModal";
 
 import "./styles.scss";
 
@@ -27,7 +27,7 @@ function VideoSection() {
           </i>
         </div>
       </div>
-      {openModal && <Modal handleModal={handleModal} />}
+      {openModal && <VideoModal handleModal={handleModal} />}
     </div>
   );
 }

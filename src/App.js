@@ -21,6 +21,8 @@ import Admin from "./pages/Admin";
 
 import "./index.scss";
 import Recovery from "./pages/Recovery";
+import AdminLayout from "./layouts/AdminLayout";
+import DashBoardLayout from "./layouts/DashboardLayout";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -70,9 +72,9 @@ const App = (props) => {
           path="/dashboard"
           render={() => (
             <WithAuth>
-              <MainLayout>
+              <DashBoardLayout>
                 <Dashboard />
-              </MainLayout>
+              </DashBoardLayout>
             </WithAuth>
           )}
         />
@@ -80,9 +82,9 @@ const App = (props) => {
           path="/admin"
           render={() => (
             <WithAdminAuth>
-              <HomepageLayout>
+              <AdminLayout>
                 <Admin />
-              </HomepageLayout>
+              </AdminLayout>
             </WithAdminAuth>
           )}
         />

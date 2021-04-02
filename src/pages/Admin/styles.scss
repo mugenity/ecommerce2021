@@ -1,0 +1,103 @@
+.contentBox {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+
+  .addNewProduct {
+    margin: 0 !important;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
+      width: 290px;
+    }
+  }
+
+  .modalContent {
+    width: 100%;
+    height: 100%;
+
+    h2 {
+      text-transform: uppercase;
+    }
+
+    .modalBtn {
+      width: 100%;
+      margin: 0 !important;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.5rem;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .tableContainer {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      margin-bottom: 20px;
+    }
+
+    @media only screen and (max-width: 760px) {
+      .tableContainer,
+      tbody,
+      tr,
+      td {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    thead {
+      tr {
+        visibility: hidden;
+
+        @media only screen and (min-width: 768px) {
+          visibility: visible;
+          border: 1px solid black;
+          th {
+            padding: 5px 0;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        text-align: center;
+        padding: 5px 0;
+
+        th:first-child,
+        td:first-child {
+          text-align: left;
+        }
+
+        td {
+          border-bottom: 1px solid grey;
+          padding: 10px 0;
+        }
+
+        .imgBox {
+          width: 100%;
+          object-fit: cover;
+
+          @media only screen and (min-width: 768px) {
+            width: 100px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

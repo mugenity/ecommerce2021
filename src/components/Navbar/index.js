@@ -85,7 +85,9 @@ function Navbar(props) {
                 <Link to="/dashboard">Account</Link>
               </li>
               <li>
-                <Link onClick={() => signOut()}>Logout</Link>
+                <Link to="/" onClick={() => signOut()}>
+                  Logout
+                </Link>
               </li>
             </>
           )}

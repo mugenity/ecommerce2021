@@ -7,7 +7,7 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser,
 });
 
-const VerticalNav = ({ children }) => {
+const SideBar = ({ children }) => {
   const { currentUser } = useSelector(mapState);
 
   const configUserProfile = {
@@ -15,12 +15,13 @@ const VerticalNav = ({ children }) => {
   };
 
   return (
-    <div className="verticalNav">
-      <UserProfile {...configUserProfile} />
-
+    <div className="sideBox">
+      <div className="userAvatar">
+        <UserProfile {...configUserProfile} />
+      </div>
       <div className="menu">{children}</div>
     </div>
   );
 };
 
-export default VerticalNav;
+export default SideBar;

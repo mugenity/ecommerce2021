@@ -21,8 +21,8 @@ import Admin from "./pages/Admin";
 
 import "./index.scss";
 import Recovery from "./pages/Recovery";
-import AdminLayout from "./layouts/AdminLayout";
-import DashBoardLayout from "./layouts/DashboardLayout";
+import AdminLayout from "./layouts/AdminLayout/";
+import DashBoardLayout from "./layouts/DashboardLayout/";
 
 const App = (props) => {
   const dispatch = useDispatch();

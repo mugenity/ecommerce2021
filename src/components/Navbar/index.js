@@ -55,7 +55,7 @@ function Navbar(props) {
             <Link to="/">Shop</Link>
           </li>
           <li>
-            <Link to="/">Product</Link>
+            <Link to="products">Products</Link>
           </li>
         </ul>
         <div className="logo">

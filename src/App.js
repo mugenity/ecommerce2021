@@ -23,6 +23,7 @@ import "./index.scss";
 import Recovery from "./pages/Recovery";
 import AdminLayout from "./layouts/AdminLayout/";
 import DashBoardLayout from "./layouts/DashboardLayout/";
+import ProductsPage from "./pages/ProductsPage";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -86,6 +87,23 @@ const App = (props) => {
                 <Admin />
               </AdminLayout>
             </WithAdminAuth>
+          )}
+        />
+        <Route
+          exact
+          path="/products"
+          render={() => (
+            <MainLayout>
+              <ProductsPage />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/products/:filterType"
+          render={() => (
+            <MainLayout>
+              <ProductsPage />
+            </MainLayout>
           )}
         />
       </Switch>

@@ -19,7 +19,9 @@ const AdminBar = (props) => {
     <div className="adminToolbar">
       <ul>
         <li>
-          <Link to="admin">My admin</Link>
+          <Link to="admin">
+            myAdmin <i className="fas fa-tools"></i>
+          </Link>
         </li>
       </ul>
     </div>

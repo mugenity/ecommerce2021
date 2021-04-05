@@ -13,6 +13,7 @@ import Button from "./../../components/Button";
 // import CKEditor from "ckeditor4-react";
 import "./styles.scss";
 import LoadMore from "../../components/LoadMore";
+import CKEditor from "ckeditor4-react";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -26,7 +27,7 @@ const Admin = (props) => {
   const [productName, setProductName] = useState("");
   const [productThumbnail, setProductThumbnail] = useState("");
   const [productPrice, setProductPrice] = useState(0);
-  // const [productDesc, setProductDesc] = useState("");
+  const [productDesc, setProductDesc] = useState("");
 
   const { data, queryDoc, isLastPage } = products;
 
@@ -47,7 +48,7 @@ const Admin = (props) => {
     setProductName("");
     setProductThumbnail("");
     setProductPrice(0);
-    // setProductDesc("");
+    setProductDesc("");
   };
 
   const handleSubmit = (e) => {
@@ -58,6 +59,7 @@ const Admin = (props) => {
         productName,
         productThumbnail,
         productPrice,
+        productDesc,
       })
     );
     resetForm();
@@ -130,9 +132,9 @@ const Admin = (props) => {
                 onChange={(e) => setProductPrice(e.target.value)}
               />
 
-              {/* <CKEditor
-              onChange={(evt) => setProductDesc(evt.editor.getData())}
-            /> */}
+              <CKEditor
+                onChange={(evt) => setProductDesc(evt.editor.getData())}
+              />
 
               <br />
 

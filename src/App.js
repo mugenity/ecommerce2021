@@ -24,6 +24,7 @@ import Recovery from "./pages/Recovery";
 import AdminLayout from "./layouts/AdminLayout/";
 import DashBoardLayout from "./layouts/DashboardLayout/";
 import ProductsPage from "./pages/ProductsPage";
+import ProductDetails from "./pages/ProductDetails";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -103,6 +104,14 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <ProductsPage />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/product/:productID"
+          render={() => (
+            <MainLayout>
+              <ProductDetails />
             </MainLayout>
           )}
         />

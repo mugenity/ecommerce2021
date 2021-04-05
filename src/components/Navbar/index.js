@@ -55,7 +55,7 @@ function Navbar(props) {
             <Link to="/">Shop</Link>
           </li>
           <li>
-            <Link to="products">Products</Link>
+            <Link to="/products">Products</Link>
           </li>
         </ul>
         <div className="logo">
@@ -66,7 +66,8 @@ function Navbar(props) {
         <ul className="rightItems">
           <li>
             <Link to="/">
-              Cart <span>(0)</span>
+              <i className="fas fa-shopping-cart"></i>
+              <span>(0)</span>
             </Link>
           </li>
           {!currentUser && (
@@ -82,11 +83,13 @@ function Navbar(props) {
           {currentUser && (
             <>
               <li>
-                <Link to="/dashboard">Account</Link>
+                <Link to="/dashboard">
+                  <i className="fas fa-user"></i>
+                </Link>
               </li>
               <li>
                 <Link to="/" onClick={() => signOut()}>
-                  Logout
+                  <i class="fas fa-sign-out-alt"> Logout </i>
                 </Link>
               </li>
             </>

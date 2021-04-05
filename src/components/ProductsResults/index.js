@@ -5,6 +5,7 @@ import { fetchProductsStart } from "./../../redux/Products/products.actions";
 import "./styles.scss";
 import ProductCard from "../../components/ProductCard";
 import FormSelect from "../../components/FormSelect";
+import LoadMore from "./../LoadMore";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -16,6 +17,8 @@ const ProductsResults = () => {
   const history = useHistory();
   const { filterType } = useParams();
 
+  const { data, queryDoc, isLastPage } = products;
+
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
   }, [filterType]);
@@ -25,9 +28,9 @@ const ProductsResults = () => {
     history.push(`/products/${nextFilter}`);
   };
 
-  if (!Array.isArray(products)) return null;
+  if (!Array.isArray(data)) return null;
 
-  if (products.length < 1) {
+  if (data.length < 1) {
     return (
       <div className="productsBox">
         <p>No items...</p>
@@ -54,6 +57,20 @@ const ProductsResults = () => {
     handleChange: handleFilter,
   };
 
+  const handleLoadMore = () => {
+    dispatch(
+      fetchProductsStart({
+        filterType,
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
+    );
+  };
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
+  };
+
   return (
     <>
       <div className="productsContainer">
@@ -62,7 +79,7 @@ const ProductsResults = () => {
           <FormSelect {...configFilters} />
         </div>
         <div className="productsBox">
-          {products.map((product, index) => {
+          {data.map((product, index) => {
             const { productThumbnail, productName, productPrice } = product;
             if (
               !productThumbnail ||
@@ -73,6 +90,9 @@ const ProductsResults = () => {
             return <ProductCard key={index} {...product} />;
           })}
         </div>
+        {!isLastPage && (
+          <LoadMore className="loadMoreBtn" {...configLoadMore} />
+        )}
       </div>
     </>
   );

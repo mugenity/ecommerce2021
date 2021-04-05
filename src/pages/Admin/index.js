@@ -12,6 +12,7 @@ import Modal from "./../../components/Modal";
 import Button from "./../../components/Button";
 // import CKEditor from "ckeditor4-react";
 import "./styles.scss";
+import LoadMore from "../../components/LoadMore";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
@@ -26,6 +27,8 @@ const Admin = (props) => {
   const [productThumbnail, setProductThumbnail] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   // const [productDesc, setProductDesc] = useState("");
+
+  const { data, queryDoc, isLastPage } = products;
 
   useEffect(() => {
     dispatch(fetchProductsStart());
@@ -58,6 +61,19 @@ const Admin = (props) => {
       })
     );
     resetForm();
+  };
+
+  const handleLoadMore = () => {
+    dispatch(
+      fetchProductsStart({
+        startAfterDoc: queryDoc,
+        persistProducts: data,
+      })
+    );
+  };
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
   };
 
   return (
@@ -134,33 +150,36 @@ const Admin = (props) => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => {
-              const {
-                productName,
-                productThumbnail,
-                productPrice,
-                documentID,
-              } = product;
+            {Array.isArray(data) &&
+              data.length > 0 &&
+              data.map((product, index) => {
+                const {
+                  productName,
+                  productThumbnail,
+                  productPrice,
+                  documentID,
+                } = product;
 
-              return (
-                <tr key={index}>
-                  <td colSpan="2" className="imgBox">
-                    <img src={productThumbnail} alt="product-img" />
-                  </td>
-                  <td> {productName} </td>
-                  <td> {productPrice} $ </td>
-                  <td>
-                    <Button
-                      className="deleteBtn"
-                      title="Delete"
-                      onClick={() => dispatch(deleteProductStart(documentID))}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+                return (
+                  <tr key={index}>
+                    <td colSpan="2" className="imgBox">
+                      <img src={productThumbnail} alt="product-img" />
+                    </td>
+                    <td> {productName} </td>
+                    <td> {productPrice} $ </td>
+                    <td>
+                      <Button
+                        className="deleteBtn"
+                        title="Delete"
+                        onClick={() => dispatch(deleteProductStart(documentID))}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
+        {!isLastPage && <LoadMore {...configLoadMore} />}
       </div>
     </>
   );

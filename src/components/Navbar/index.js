@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { signOutUserStart } from "./../../redux/User/user.actions";
+import { selectCartItemsCount } from "./../../redux/Cart/cart.selectors";
 import logo from "../../assets/logo.png";
 
 import "./styles.scss";
 
-const mapState = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapState = (state) => ({
+  currentUser: state.user.currentUser,
+  totalNumCartItems: selectCartItemsCount(state),
 });
 
 function Navbar(props) {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, totalNumCartItems } = useSelector(mapState);
   const [openMenu, setOpenMenu] = useState(false);
 
   const signOut = () => {
@@ -67,7 +69,7 @@ function Navbar(props) {
           <li>
             <Link to="/">
               <i className="fas fa-shopping-cart"></i>
-              <span>(0)</span>
+              <span>({totalNumCartItems})</span>
             </Link>
           </li>
           {!currentUser && (

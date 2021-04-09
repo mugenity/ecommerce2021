@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./../../redux/Cart/cart.actions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./styles.scss";
 import Button from "./../Button";
 
 const ProductCard = (product) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { productName, productPrice, productThumbnail, documentID } = product;
 
@@ -25,11 +26,12 @@ const ProductCard = (product) => {
   const handleAddToCart = (product) => {
     if (!product) return;
     dispatch(addToCart(product));
+    history.push("/cart");
   };
 
   return (
     <div className="cardContainer">
-      <div className="thumbnailBox">
+      <div className="thumbnailContent">
         <Link to={`/product/${documentID}`}>
           <img src={productThumbnail} alt={productName} />
         </Link>

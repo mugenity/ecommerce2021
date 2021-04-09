@@ -1,0 +1,52 @@
+.thumbnailBox {
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+  }
+
+  .infoProduct {
+    small {
+      span {
+        color: brown;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+td {
+  padding: 10px 5px;
+  &:nth-child(2) {
+    text-align: center;
+  }
+  &:last-child {
+    text-align: right;
+  }
+  i {
+    cursor: pointer;
+    color: brown;
+  }
+}
+td {
+  &:nth-child(2) {
+    font-size: 0.6rem;
+    span:first-child,
+    span:last-child {
+      border: 1px solid #999999;
+      background-color: rgb(226, 223, 223);
+      padding: 3px;
+      margin: 0 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .quantity {
+      font-size: 1rem;
+      // border: 1px solid black;
+      padding: 0 3px;
+    }
+  }
+}

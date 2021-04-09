@@ -67,7 +67,7 @@ function Navbar(props) {
         </div>
         <ul className="rightItems">
           <li>
-            <Link to="/">
+            <Link to="/cart">
               <i className="fas fa-shopping-cart"></i>
               <span>({totalNumCartItems})</span>
             </Link>

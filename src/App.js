@@ -25,6 +25,7 @@ import AdminLayout from "./layouts/AdminLayout/";
 import DashBoardLayout from "./layouts/DashboardLayout/";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./pages/ProductDetails";
+import CartPage from "./pages/Cart";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -96,6 +97,15 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <ProductsPage />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path="/cart"
+          render={() => (
+            <MainLayout>
+              <CartPage />
             </MainLayout>
           )}
         />

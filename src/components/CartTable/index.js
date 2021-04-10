@@ -47,7 +47,11 @@ const CartTable = () => {
                 title="Keep Shopping"
                 className="cartBtn"
               />
-              <Button title="Checkout ->" className="cartBtn" />
+              <Button
+                onClick={() => history.push("/payment")}
+                title="Checkout ->"
+                className="cartBtn"
+              />
             </div>
           </div>
         </>

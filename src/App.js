@@ -26,6 +26,7 @@ import DashBoardLayout from "./layouts/DashboardLayout/";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/Cart";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -107,6 +108,17 @@ const App = (props) => {
             <MainLayout>
               <CartPage />
             </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path="/payment"
+          render={() => (
+            <WithAuth>
+              <MainLayout>
+                <CheckoutPage />
+              </MainLayout>
+            </WithAuth>
           )}
         />
         <Route

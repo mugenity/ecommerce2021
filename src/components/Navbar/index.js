@@ -30,11 +30,11 @@ function Navbar(props) {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/">Shop</Link>
-        </li>
+        </li> */}
         <li>
-          <Link to="/">Product</Link>
+          <Link to="/">Products</Link>
         </li>
       </ul>
     </div>
@@ -53,9 +53,9 @@ function Navbar(props) {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/">Shop</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/products">Products</Link>
           </li>

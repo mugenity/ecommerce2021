@@ -18,6 +18,7 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
+import Order from "./pages/Order";
 
 import "./index.scss";
 import Recovery from "./pages/Recovery";
@@ -27,6 +28,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/Cart";
 import CheckoutPage from "./pages/CheckoutPage";
+// import Test from "./components/Test";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -110,6 +112,15 @@ const App = (props) => {
             </MainLayout>
           )}
         />
+        {/* <Route
+          exact
+          path="/test"
+          render={() => (
+            <MainLayout>
+              <Test />
+            </MainLayout>
+          )}
+        /> */}
         <Route
           exact
           path="/payment"
@@ -135,6 +146,16 @@ const App = (props) => {
             <MainLayout>
               <ProductDetails />
             </MainLayout>
+          )}
+        />
+        <Route
+          path="/order/:orderID"
+          render={() => (
+            <WithAuth>
+              <DashBoardLayout>
+                <Order />
+              </DashBoardLayout>
+            </WithAuth>
           )}
         />
       </Switch>
